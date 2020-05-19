@@ -26,3 +26,12 @@ This will work both on linux and Docker for Windows. With Docker for Windows, sk
 $ mkdir -p /path/to/lgsm && sudo chown -R 750:750 /path/to/lgsm
 $ docker run --name lgsm-docker --restart always --net=host --hostname LGSM -it -v "/path/to/lgsm:/home/lgsm/" gameservermanagers/linuxgsm-docker
 ```
+
+## Installation NEW
+```bash
+$ sudo docker volume create linuxgsm
+$ git clone <this repository>
+$ cd LinuxGSM
+$ sudo docker build -t linuxgsm2 .
+$ sudo docker run --name gameserver-1 --restart always --net=host --hostname gameserver-1 -it -v "linuxgsm:/home/linuxgsm/linuxgsm" linuxgsm2
+```

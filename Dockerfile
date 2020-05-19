@@ -73,7 +73,8 @@ WORKDIR /home/linuxgsm
 
 # Clone LinuxGSM repository
 RUN mkdir git
-RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM
+RUN git clone https://github.com/GameServerManagers/LinuxGSM.git git/LinuxGSM
+RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM-Docker
 
 # Install SteamCMD
 RUN mkdir -p /home/linuxgsm/Steam
