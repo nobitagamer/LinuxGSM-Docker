@@ -88,4 +88,4 @@ ENV TERM=xterm
 ## Docker Details
 ENV PATH=$PATH:/home/linuxgsm/linuxgsm:/home/linuxgsm/Steam
 
-ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM/entrypoint.sh"]
+ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM-Docker/entrypoint.sh"]
