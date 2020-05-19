@@ -76,8 +76,8 @@ RUN mkdir git
 RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM
 
 # Install SteamCMD
-RUN mkdir -p /opt/steamcmd
-RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -vxz -C /opt/steamcmd
+RUN mkdir -p /home/linuxgsm/Steam
+RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -vxz -C /home/linuxgsm/Steam
 
 VOLUME ["/home/linuxgsm/linuxgsm"]
 
@@ -85,8 +85,6 @@ VOLUME ["/home/linuxgsm/linuxgsm"]
 ENV TERM=xterm
 
 ## Docker Details
-ENV PATH=$PATH:/home/linuxgsm/linuxgsm:/opt/steamcmd
+ENV PATH=$PATH:/home/linuxgsm/linuxgsm:/home/linuxgsm/Steam
 
-ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM/entrypoint.sh"]          
-          
-          
+ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM/entrypoint.sh"]
