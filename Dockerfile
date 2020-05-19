@@ -80,6 +80,9 @@ RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM-Docker
 RUN mkdir -p /home/linuxgsm/Steam
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -vxz -C /home/linuxgsm/Steam
 
+# Initialising volume
+RUN mkdir -p /home/linuxgsm/linuxgsm
+RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
 VOLUME ["/home/linuxgsm/linuxgsm"]
 
 # need use xterm for LinuxGSM
