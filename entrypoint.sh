@@ -9,9 +9,9 @@
 ##
 ## If one wants to use a volume for the data directory, which is the home directory
 ## then we must keep a backup copy of the script on local drive
-if [ ! -e ~/linuxgsm.sh ]; then
+if [ ! -e ~/linuxgsm/linuxgsm.sh ]; then
     echo "Initializing Linuxgsm User Script in New Volume"
-    cp /linuxgsm.sh ./linuxgsm.sh
+    cp ~/git/LinuxGSM/linuxgsm.sh ~/linuxgsm/linuxgsm.sh
 fi
 
 # with no command, just spawn a running container suitable for exec's
