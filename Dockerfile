@@ -1,4 +1,6 @@
-FROM cm2network/steamcmd:latest
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
@@ -73,13 +75,17 @@ WORKDIR /home/linuxgsm
 RUN mkdir git
 RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM
 
+# Install SteamCMD
+RUN mkdir -p /opt/steamcmd
+RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -vxz -C /opt/steamcmd
+
 VOLUME ["/home/linuxgsm/linuxgsm"]
 
 # need use xterm for LinuxGSM
 ENV TERM=xterm
 
 ## Docker Details
-ENV PATH=$PATH:/home/linuxgsm/linuxgsm
+ENV PATH=$PATH:/home/linuxgsm/linuxgsm:/opt/steamcmd
 
 ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM/entrypoint.sh"]          
           
