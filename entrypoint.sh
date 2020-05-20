@@ -16,8 +16,7 @@ fi
 
 # with no command, just spawn a running container suitable for exec's
 if [ $# = 0 ]; then
-    #tail -f /dev/null
-    exit 0
+    tail -f /dev/null
 else
     # execute the command passed through docker
     "$@"
