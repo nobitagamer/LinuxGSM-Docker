@@ -85,6 +85,9 @@ RUN mkdir -p /home/linuxgsm/linuxgsm
 RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
 VOLUME ["/home/linuxgsm/linuxgsm"]
 
+# Set default working directory
+WORKDIR /home/linuxgsm/linuxgsm
+
 # need use xterm for LinuxGSM
 ENV TERM=xterm
 
