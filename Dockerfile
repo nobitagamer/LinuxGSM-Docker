@@ -2,13 +2,6 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Add the linuxgsm user
-RUN useradd -ms /bin/bash linuxgsm
-
-# Switch to the user linuxgsm
-USER linuxgsm
-WORKDIR /home/linuxgsm
-
 RUN dpkg --add-architecture i386 && apt-get update
 
 RUN apt install -y locales apt-utils debconf-utils
@@ -74,6 +67,13 @@ RUN apt install -y \
                 libnm-glib-dev:i386 \
                 && apt-get clean \
                 && rm -rf /var/lib/apt/lists/*
+
+# Add the linuxgsm user
+RUN useradd -ms /bin/bash linuxgsm
+
+# Switch to the user linuxgsm
+USER linuxgsm
+WORKDIR /home/linuxgsm
 
 # Clone LinuxGSM repository
 RUN mkdir git
