@@ -87,7 +87,7 @@ RUN mkdir -p /home/linuxgsm/linuxgsm
 RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
 VOLUME ["/home/linuxgsm/linuxgsm"]
 
-RUN mkdir -p /home/linuxgsm/linuxgsm
+RUN mkdir -p /home/linuxgsm/.steam
 RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/.steam
 VOLUME ["/home/linuxgsm/.steam"]
 
