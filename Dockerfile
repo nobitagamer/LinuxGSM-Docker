@@ -92,6 +92,7 @@ RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/.steam
 VOLUME ["/home/linuxgsm/.steam"]
 
 # Set default working directory
+USER linuxgsm
 WORKDIR /home/linuxgsm/linuxgsm
 
 # need use xterm for LinuxGSM
@@ -100,5 +101,4 @@ ENV TERM=xterm
 ## Docker Details
 ENV PATH=$PATH:/home/linuxgsm/linuxgsm
 
-USER linuxgsm
 ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM-Docker/entrypoint.sh"]
