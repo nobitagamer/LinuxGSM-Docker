@@ -30,8 +30,9 @@ $ docker run --name lgsm-docker --restart always --net=host --hostname LGSM -it 
 ## Installation NEW
 ```bash
 $ sudo docker volume create linuxgsm
+$ sudo docker volume create steam
 $ git clone <this repository>
 $ cd LinuxGSM
-$ sudo docker build -t linuxgsm2 .
-$ sudo docker run --name gameserver-1 --restart always --net=host --hostname gameserver-1 -it -v "linuxgsm:/home/linuxgsm/linuxgsm" linuxgsm2
+$ sudo docker build --no-cache -t linuxgsm2 .
+$ sudo docker run --name gameserver-1 --restart always --net=host --hostname gameserver-1 -it -v "linuxgsm:/home/linuxgsm/linuxgsm" -v "steam:/home/linuxgsm/.steam" linuxgsm2
 ```

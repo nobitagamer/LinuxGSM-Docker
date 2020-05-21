@@ -30,6 +30,7 @@ RUN apt install -y \
                 python \
                 util-linux \
                 binutils \
+                gdb \
                 bc \
                 jq \
                 tmux \
