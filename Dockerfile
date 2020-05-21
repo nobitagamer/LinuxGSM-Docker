@@ -16,6 +16,7 @@ RUN apt install -y steamcmd
 RUN apt install -y \
                 git \
                 nano \
+                netstat \
                 iproute2 \
                 mailutils \
                 postfix \
@@ -81,9 +82,10 @@ RUN git clone https://github.com/GameServerManagers/LinuxGSM.git git/LinuxGSM
 RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM-Docker
 
 # Initialising volume
-RUN mkdir -p /home/linuxgsm/linuxgsm
-RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
+#RUN mkdir -p /home/linuxgsm/linuxgsm
+#RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
 VOLUME ["/home/linuxgsm/linuxgsm"]
+VOLUME ["/home/linuxgsm/.steam"]
 
 # Set default working directory
 WORKDIR /home/linuxgsm/linuxgsm
