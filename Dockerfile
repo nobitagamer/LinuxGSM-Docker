@@ -16,7 +16,7 @@ RUN apt install -y steamcmd
 RUN apt install -y \
                 git \
                 nano \
-                netstat \
+                net-tools \
                 iproute2 \
                 mailutils \
                 postfix \
