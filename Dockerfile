@@ -81,10 +81,14 @@ RUN mkdir git
 RUN git clone https://github.com/GameServerManagers/LinuxGSM.git git/LinuxGSM
 RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM-Docker
 
+USER root
 # Initialising volume
-#RUN mkdir -p /home/linuxgsm/linuxgsm
-#RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
+RUN mkdir -p /home/linuxgsm/linuxgsm
+RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/linuxgsm
 VOLUME ["/home/linuxgsm/linuxgsm"]
+
+RUN mkdir -p /home/linuxgsm/linuxgsm
+RUN chown -R linuxgsm:linuxgsm /home/linuxgsm/.steam
 VOLUME ["/home/linuxgsm/.steam"]
 
 # Set default working directory
@@ -96,4 +100,5 @@ ENV TERM=xterm
 ## Docker Details
 ENV PATH=$PATH:/home/linuxgsm/linuxgsm
 
+USER linuxgsm
 ENTRYPOINT ["bash", "/home/linuxgsm/git/LinuxGSM-Docker/entrypoint.sh"]
