@@ -33,6 +33,13 @@ $ sudo docker volume create linuxgsm
 $ sudo docker volume create steam
 $ git clone <this repository>
 $ cd LinuxGSM
-$ sudo docker build --no-cache -t linuxgsm2 .
+$ time nice -n +20 ionice -c idle sudo docker build --no-cache -t linuxgsm2 .
 $ sudo docker run --name gameserver-1 --restart always --net=host --hostname gameserver-1 -it -v "linuxgsm:/home/linuxgsm/linuxgsm" -v "steam:/home/linuxgsm/.steam" linuxgsm2
+```
+
+## Access files with sftp
+user: linuxgsm
+password: gameserver
+```bash
+sudo docker run -v linuxgsm:/home/linuxgsm/gameserver -p 2222:22 -d atmoz/sftp linuxgsm:gameserver:1000:1000
 ```
