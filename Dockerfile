@@ -8,9 +8,19 @@ RUN apt install -y locales apt-utils debconf-utils
 RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
+ENV DEPOT_DOWNLOADER_VERSION 2.3.5
+
 # Install steamcmd
 RUN echo steamcmd steam/question select "I AGREE" | debconf-set-selections
 RUN apt install -y steamcmd
+
+# Add Microsoft repository key and feed
+RUN apt install -y software-properties-common wget \
+    && wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && rm -f packages-microsoft-prod.deb \
+    && add-apt-repository universe \
+    && apt-get update
 
 # Install dependencies
 RUN apt install -y \
@@ -21,7 +31,6 @@ RUN apt install -y \
                 mailutils \
                 postfix \
                 curl \
-                wget \
                 file \
                 bzip2 \
                 gzip \
@@ -67,6 +76,7 @@ RUN apt install -y \
                 libtcmalloc-minimal4:i386 \
                 libsdl1.2debian \
                 libnm-glib-dev:i386 \
+                dotnet-runtime-3.1 \
                 && apt-get clean \
                 && rm -rf /var/lib/apt/lists/*
 
@@ -80,7 +90,11 @@ WORKDIR /home/linuxgsm
 # Clone LinuxGSM repository
 RUN mkdir git
 RUN git clone https://github.com/GameServerManagers/LinuxGSM.git git/LinuxGSM
-RUN git clone https://github.com/phil535/LinuxGSM-Docker.git git/LinuxGSM-Docker
+RUN git clone https://github.com/nobitagamer/LinuxGSM-Docker.git git/LinuxGSM-Docker
+    
+RUN wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_${DEPOT_DOWNLOADER_VERSION}/depotdownloader-${DEPOT_DOWNLOADER_VERSION}.zip -O depotdownloader.zip \
+    && unzip depotdownloader.zip -d depotdownloader \
+    && rm -f depotdownloader.zip
 
 # Initialising volume
 VOLUME ["/home/linuxgsm"]
